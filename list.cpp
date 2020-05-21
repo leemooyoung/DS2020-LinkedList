@@ -4,8 +4,16 @@
 LinkedList::LinkedList()
 {
     head = new Node();
+    tail = new Node();
+
     head -> data = 0;
-    head -> next = nullptr;
+    tail -> data = 0;
+
+    head -> next = tail;
+    head -> prev = nullptr;
+
+    tail -> next = nullptr;
+    tail -> prev = head;
 }
 
 LinkedList::~LinkedList()
@@ -23,33 +31,38 @@ void LinkedList::Append(int data)
 {
     Node * new_node = new Node();
     new_node -> data = data;
-    new_node -> next = nullptr;
 
-    Node * cur = head;
-    while(cur -> next != nullptr)
-    {
-        cur = cur -> next;
-    }
+    // tail의 이전 원소와 new_node를 연결
+    tail -> prev -> next = new_node;
+    new_node -> prev = tail -> prev;
 
-    cur -> next = new_node;
+    // new_node와 tail을 연결
+    new_node -> next = tail;
+    tail -> prev = new_node;
 }
 
 void LinkedList::Prepend(int data)
 {
     Node * new_node = new Node();
     new_node -> data = data;
+    
+    // head의 다음 원소와 new_node를 연결
+    head -> next -> prev = new_node;
     new_node -> next = head -> next;
+
+    // new_node와 head를 연결
     head -> next = new_node;
+    new_node -> prev = head;
 }
 
 int LinkedList::Length()
 {
     int l = 0;
     Node * cur = head;
-    while(cur -> next != nullptr)
+    while(cur -> next != tail)
     {
-        l++;
         cur = cur -> next;
+        l++;
     }
     return l;
 }
@@ -57,10 +70,21 @@ int LinkedList::Length()
 void LinkedList::Print()
 {
     Node * cur = head;
-    while(cur -> next != nullptr)
+    while(cur -> next != tail)
     {
-        std::cout << cur -> next -> data << " ";
         cur = cur -> next;
+        std::cout << cur -> data << " ";
+    }
+    std::cout << std::endl;
+}
+
+void LinkedList::PrintReverse()
+{
+    Node * cur = tail;
+    while(cur -> prev != head)
+    {
+        cur = cur -> prev;
+        std::cout << cur -> data << " ";
     }
     std::cout << std::endl;
 }

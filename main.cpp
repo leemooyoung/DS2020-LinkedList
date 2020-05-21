@@ -23,7 +23,7 @@ int main(void) {
             list.Prepend(number);
     }
     
-    list.Print();
+    list.PrintReverse();
     cout << list.Length() << endl;
     
     return 0;

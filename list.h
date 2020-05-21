@@ -8,14 +8,15 @@ class Node
 private:
     int data;
     Node * next;
-public:
+    Node * prev;
     friend LinkedList;
 };
 
 class LinkedList
 {
 private:
-    Node * head;
+    Node * head;    //head, tail은 dummy node
+    Node * tail;
 public:
     LinkedList();
     ~LinkedList();
@@ -23,6 +24,7 @@ public:
     void Prepend(int data);
     int Length();
     void Print();
+    void PrintReverse();
 };
 
 #endif
