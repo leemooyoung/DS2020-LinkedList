@@ -54,4 +54,5 @@ void LinkedList::Print()
         std::cout << cur -> next -> data << " ";
         cur = cur -> next;
     }
+    std::cout << std::endl;
 }
