@@ -20,6 +20,7 @@ public:
     LinkedList();
     ~LinkedList();
     void Append(int data);
+    void Prepend(int data);
     int Length();
     void Print();
 };

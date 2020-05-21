@@ -17,7 +17,10 @@ int main(void) {
     
     istringstream is(numbers);
     while (is >> number) {
-        list.Append(number);
+        if (number % 2)
+            list.Append(number);
+        else
+            list.Prepend(number);
     }
     
     list.Print();

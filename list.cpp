@@ -34,6 +34,14 @@ void LinkedList::Append(int data)
     cur -> next = new_node;
 }
 
+void LinkedList::Prepend(int data)
+{
+    Node * new_node = new Node();
+    new_node -> data = data;
+    new_node -> next = head -> next;
+    head -> next = new_node;
+}
+
 int LinkedList::Length()
 {
     int l = 0;
