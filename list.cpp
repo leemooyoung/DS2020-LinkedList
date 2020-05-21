@@ -25,7 +25,13 @@ void LinkedList::Append(int data)
     new_node -> data = data;
     new_node -> next = nullptr;
 
-    head -> next = new_node;
+    Node * cur = head;
+    while(cur -> next != nullptr)
+    {
+        cur = cur -> next;
+    }
+
+    cur -> next = new_node;
 }
 
 int LinkedList::Length()
@@ -37,6 +43,7 @@ int LinkedList::Length()
         l++;
         cur = cur -> next;
     }
+    return l;
 }
 
 void LinkedList::Print()
